@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    img {
+      float: left;
+      width: 33.33%;
+    }
+
+    #stopBtn {
+      float: left;
+      width: 100%;
+    }
+
+    #right {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+  </style>
+</head>
+
+<body>
+  <script src="./js/makePMV.js"></script>
+
+  <div id="setupDiv">
+    <div id="sides" class="media-column">
+      <p>Sides:</p><button onClick="newFile('sides')">+</button>
+    </div>
+    <div id="middle" class="media-column">
+      <p>Middle:</p><button onClick="newFile('middle')">+</button>
+    </div>
+    <div id="middleDrops" class="media-column">
+      <p>Middle Drops:</p><button onClick="newFile('middleDrops')">+</button>
+    </div>
+    <button id="generate" onClick="generate()">Generate PMV</button>
+  </div>
+
+  <div id="pmvDiv" hidden>
+    <button name="stopBtn" onClick="stop()">Stop</button>
+    <img id="left" src="#">
+    <img id="mid" src="#">
+    <img id="right" src="#">
+  </div>
+</body>
+
+</html>
