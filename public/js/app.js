@@ -28,5 +28,4 @@ async function getFile(position) {
 			alert('something went wrong: app.js line 29')
 	}
 	console.log(fileData)
-	console.log(test)
 }
