@@ -21,9 +21,25 @@ let sizeMiddleDrops = 0
 // ---
 
 let fileHandle
-const sides = []
-const middle = []
-const middleDrops = []
+let sides = []
+let middle = []
+let middleDrops = []
+
+const clearAllFiles = (position) => {
+  // TODO https://github.com/z-pattern-matching/z
+  // i insist we implement this library later down
+  // the line for moments like this & the newFile() switch
+  if (position === "sides") sides = []
+  if (position === "middle") middle = []
+  if (position === "middleDrops") middleDrops = []
+
+  // i wanted it to look cleaner
+  // what have i done D:
+  // position === "sides" ? sides = []
+  // : position === "middle" ? middle = []
+  // : position === "middleDrops" ? middleDrops = []
+  // : alert("you were never supposed to see this popup wtf did you do")
+}
 
 const newFile = async (position, file = null) => {
   let fileData = undefined
