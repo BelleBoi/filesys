@@ -25,9 +25,18 @@ const sides = []
 const middle = []
 const middleDrops = []
 
-const newFile = async (position) => {
-  [fileHandle] = await window.showOpenFilePicker(pickerOpts)
-  let fileData = await fileHandle.getFile()
+const newFile = async (position, file = null) => {
+  let fileData = undefined
+
+  // if the function is called from the page this runs
+  if (file === null) {
+    [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+    fileData = await fileHandle.getFile()
+  }
+
+  // if the function is called from newDir() this runs
+  if (file !== null) fileData = await file.getFile()
+
   switch (position) {
     case 'sides':
       sides.push(URL.createObjectURL(fileData))
@@ -45,6 +54,15 @@ const newFile = async (position) => {
       alert('make-pmv newFile() switch default case')
   }
   console.log(middle, sides, middleDrops)
+}
+
+// NOTE: newDir() calls newFile() for each file
+// in the imported directory. sloppy approach but works for now
+const newDir = async (position) => {
+  let dirHandle = await window.showDirectoryPicker()
+  for await (const entry of dirHandle.values()) {
+    newFile(position, entry)
+  }
 }
 
 // TODO: 
