@@ -25,9 +25,18 @@ const sides = []
 const middle = []
 const middleDrops = []
 
-const newFile = async (position) => {
-  [fileHandle] = await window.showOpenFilePicker(pickerOpts)
-  let fileData = await fileHandle.getFile()
+const newFile = async (position, file = null) => {
+  let fileData = undefined
+
+  // if the function is called from the page this runs
+  if (file === null) {
+    [fileHandle] = await window.showOpenFilePicker(pickerOpts)
+    fileData = await fileHandle.getFile()
+  }
+
+  // if the function is called from newDir() this runs
+  if (file !== null) fileData = await file.getFile()
+
   switch (position) {
     case 'sides':
       sides.push(URL.createObjectURL(fileData))
@@ -47,7 +56,18 @@ const newFile = async (position) => {
   console.log(middle, sides, middleDrops)
 }
 
-// TODO: move this into newFile()
+// NOTE: newDir() calls newFile() for each file
+// in the imported directory. sloppy approach but works for now
+const newDir = async (position) => {
+  let dirHandle = await window.showDirectoryPicker()
+  for await (const entry of dirHandle.values()) {
+    newFile(position, entry)
+  }
+}
+
+// TODO: 
+// - move this into newFile()
+// - display info independently of adding a file
 const showFileInfo = (file, position) => {
   let textBox = document.createElement('p')
   let fileInfo = document.createTextNode(file.name)
@@ -66,12 +86,16 @@ const generate = () => {
   let loops = 0
   let dropToggle = false // TODO: properly implement drops
   while (loops < 10) {
+    // TODO: 
+    // - seperate mid image switch from sides image switch
+    // - call a new image on set times or on a set timer
     loopProcedure(loops)
     // TODO: set dropToggle to true on random chance or other condition
     // then turn it back off before the next image switch
     loops++
   }
 
+  // changes the images on screen when called upon from the loop
   function loopProcedure(i) {
     setTimeout(function() {
       left.src = sides[Math.floor(Math.random() * sides.length)]
