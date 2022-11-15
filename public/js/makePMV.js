@@ -47,7 +47,9 @@ const newFile = async (position) => {
   console.log(middle, sides, middleDrops)
 }
 
-// TODO: move this into newFile()
+// TODO: 
+// - move this into newFile()
+// - display info independently of adding a file
 const showFileInfo = (file, position) => {
   let textBox = document.createElement('p')
   let fileInfo = document.createTextNode(file.name)
@@ -66,12 +68,16 @@ const generate = () => {
   let loops = 0
   let dropToggle = false // TODO: properly implement drops
   while (loops < 10) {
+    // TODO: 
+    // - seperate mid image switch from sides image switch
+    // - call a new image on set times or on a set timer
     loopProcedure(loops)
     // TODO: set dropToggle to true on random chance or other condition
     // then turn it back off before the next image switch
     loops++
   }
 
+  // changes the images on screen when called upon from the loop
   function loopProcedure(i) {
     setTimeout(function() {
       left.src = sides[Math.floor(Math.random() * sides.length)]
