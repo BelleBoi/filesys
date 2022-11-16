@@ -2,7 +2,10 @@ const pickerOpts = {
 	types: [
 		{
 			description: "media",
-			accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.gif'] }
+			accept: {
+        'image/*': ['.png', '.jpg', '.jpeg', '.gif'],
+        'video/*': ['.mp4']
+      }
 		}
 	],
 	excludeAcceptAllOption: true,
