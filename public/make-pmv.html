@@ -6,20 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-    img {
-      float: left;
-      width: 33.33%;
-    }
-
-    #stopBtn {
-      float: left;
-      width: 100%;
-    }
 
     #right {
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
     }
+
+    #pmv-display {
+      display: flex;
+      flex-direction: row;
+    }
+
+    img:not([class]) {
+      width: 100%;
+      padding: 0.5em;
+    }
+
   </style>
 </head>
 
@@ -48,11 +50,13 @@
     <button id="generate" onClick="generate()">Generate PMV</button>
   </div>
 
-  <div id="pmvDiv" hidden>
+  <div id="pmv-loader" hidden>
     <button name="stopBtn" onClick="stop()">Stop</button>
-    <img id="left" src="#">
-    <img id="mid" src="#">
-    <img id="right" src="#">
+    <div id="pmv-display">
+      <img src="#">
+      <img src="#">
+      <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fyesofcorsa.com%2Fwp-content%2Fuploads%2F2017%2F03%2FPug-Desktop-Wallpaper-Free.jpg&f=1&nofb=1&ipt=6ca553011ce479b9a93d603af190a99253936ffa5c1445fbf3f827e3541c4416&ipo=images">
+    </div>
   </div>
 </body>
 

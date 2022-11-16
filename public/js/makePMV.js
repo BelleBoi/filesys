@@ -93,7 +93,7 @@ const showFileInfo = (file, position) => {
 
 const generate = () => { 
   document.getElementById("setupDiv").hidden = true
-  document.getElementById("pmvDiv").hidden = false
+  document.getElementById("pmv-loader").hidden = false
 
   const left = document.getElementById("left")
   const mid = document.getElementById("mid")
