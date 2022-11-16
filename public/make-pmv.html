@@ -6,20 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <style>
-    img {
-      float: left;
-      width: 33.33%;
-    }
-
-    #stopBtn {
-      float: left;
-      width: 100%;
-    }
 
     #right {
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
     }
+
+    #pmv-display {
+      display: flex;
+      flex-direction: row;
+    }
+
+    img:not([class]) {
+      width: 100%;
+      padding: 0.5em;
+    }
+
   </style>
 </head>
 
@@ -49,19 +51,22 @@
   </div>
 
   <div id="pmvDiv" hidden>
-    <!-- <button name="stopBtn" onClick="stop()">Stop</button> -->
-    <!-- <img id="left" src="#">
-    <img id="mid" src="#">
-    <img id="right" src="#"> -->
-    <video id="left" width="33.33%" autoplay muted>
-      <source src="#" type="video/mp4">
-    </video> 
-    <video id="mid" width="33.33%" autoplay muted>
-      <source src="#" type="video/mp4">
-    </video> 
-    <video id="right" width="33.33%" autoplay muted>
-      <source src="#" type="video/mp4">
-    </video> 
+  <video id="left" width="33.33%" autoplay muted>
+    <source src="#" type="video/mp4">
+  </video> 
+  <video id="mid" width="33.33%" autoplay muted>
+    <source src="#" type="video/mp4">
+  </video> 
+  <video id="right" width="33.33%" autoplay muted>
+    <source src="#" type="video/mp4">
+  </video> 
+  <!-- <div id="pmv-loader" hidden>
+    <button name="stopBtn" onClick="stop()">Stop</button>
+    <div id="pmv-display">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+    </div> -->
   </div>
 </body>
 
