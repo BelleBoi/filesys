@@ -18,8 +18,7 @@
     }
 
     img:not([class]) {
-      width: 100%;
-      padding: 0.5em;
+      width: 33.33%;
     }
 
   </style>
@@ -50,23 +49,22 @@
     <button id="generate" onClick="generate()">Generate PMV</button>
   </div>
 
-  <div id="pmvDiv" hidden>
-  <video id="left" width="33.33%" autoplay muted>
-    <source src="#" type="video/mp4">
-  </video> 
-  <video id="mid" width="33.33%" autoplay muted>
-    <source src="#" type="video/mp4">
-  </video> 
-  <video id="right" width="33.33%" autoplay muted>
-    <source src="#" type="video/mp4">
-  </video> 
-  <!-- <div id="pmv-loader" hidden>
+  <div id="pmv-loader" hidden>
     <button name="stopBtn" onClick="stop()">Stop</button>
     <div id="pmv-display">
-      <img src="#">
-      <img src="#">
-      <img src="#">
-    </div> -->
+      <!-- <video id="left" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video> 
+      <video id="mid" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video> 
+      <video id="right" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video>  -->
+      <img id="left" src="#">
+      <img id="mid" src="#">
+      <img id="right" src="#">
+    </div>
   </div>
 </body>
 

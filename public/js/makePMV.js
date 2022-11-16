@@ -127,7 +127,7 @@ const generate = () => {
  }
 
  const stop = () => {
-  document.getElementById("pmvDiv").hidden = true
+  document.getElementById("pmv-loader").hidden = true
   document.getElementById("setupDiv").hidden = false
   left.src, mid.src, right.src = "#"
  }
