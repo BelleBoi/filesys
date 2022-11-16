@@ -2,7 +2,10 @@ const pickerOpts = {
 	types: [
 		{
 			description: "media",
-			accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.gif'] }
+			accept: {
+        'image/*': ['.png', '.jpg', '.jpeg', '.gif'],
+        'video/*': ['.mp4']
+      }
 		}
 	],
 	excludeAcceptAllOption: true,
@@ -124,7 +127,7 @@ const generate = () => {
  }
 
  const stop = () => {
-  document.getElementById("pmvDiv").hidden = true
+  document.getElementById("pmv-loader").hidden = true
   document.getElementById("setupDiv").hidden = false
   left.src, mid.src, right.src = "#"
  }

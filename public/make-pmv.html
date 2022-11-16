@@ -18,8 +18,7 @@
     }
 
     img:not([class]) {
-      width: 100%;
-      padding: 0.5em;
+      width: 33.33%;
     }
 
   </style>
@@ -53,9 +52,27 @@
   <div id="pmv-loader" hidden>
     <button name="stopBtn" onClick="stop()">Stop</button>
     <div id="pmv-display">
-      <img src="#">
-      <img src="#">
-      <img src="#">
+      <!-- NOTE: the way this currently works is you either display images or vids.
+        uncomment the elements which will display what you want and knock yourself out.
+        switching between <video> & <img> depending on the media has been put on the
+        backburner due to the fact the original app already does this
+      -->
+      
+      <!-- ANCHOR: display mp4's -->
+      <!-- <video id="left" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video> 
+      <video id="mid" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video> 
+      <video id="right" width="33.33%" autoplay muted>
+        <source src="#" type="video/mp4">
+      </video>  -->
+
+      <!-- ANCHOR: display images -->
+      <!-- <img id="left" src="#">
+      <img id="mid" src="#">
+      <img id="right" src="#"> -->
     </div>
   </div>
 </body>
