@@ -28,7 +28,13 @@ let sides = []
 let middle = []
 let middleDrops = []
 
-const clearAllFiles = (position) => {
+// NOTE: these render file info if there is more than 0 elements in 
+// the respective array. Currently useless
+if (sides.length > 0) sides.forEach(file => renderFileInfo(file, "sides"))
+if (middle.length > 0) middle.forEach(file => renderFileInfo(file, "middle"))
+if (middleDrops.length > 0) middleDrops.forEach(file => renderFileInfo(file, "middleDrops"))
+
+const clearFilesInColumn = (position) => {
   // TODO https://github.com/z-pattern-matching/z
   // i insist we implement this library later down
   // the line for moments like this & the newFile() switch
