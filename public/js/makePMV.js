@@ -44,6 +44,8 @@ const clearAllFiles = (position) => {
   // : alert("you were never supposed to see this popup wtf did you do")
 }
 
+const clearAllFiles = () => sides = middle = middleDrops = []
+
 const newFile = async (position, file = null) => {
   let fileData = undefined
 
