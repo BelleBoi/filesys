@@ -67,20 +67,21 @@ const newFile = async (position, file = null) => {
   switch (position) {
     case 'sides':
       sides.push(URL.createObjectURL(fileData))
-      showFileInfo(fileData, 'sides')
+      renderFileInfo(fileData, 'sides')
       break
     case 'middle':
       middle.push(URL.createObjectURL(fileData))
-      showFileInfo(fileData, 'middle')
+      renderFileInfo(fileData, 'middle')
       break
     case 'middleDrops':
       middleDrops.push(URL.createObjectURL(fileData))
-      showFileInfo(fileData, 'middleDrops')
+      renderFileInfo(fileData, 'middleDrops')
       break
     default:
       alert('make-pmv newFile() switch default case')
   }
-  console.log(middle, sides, middleDrops)
+  // NOTE console log
+  // console.log(middle, sides, middleDrops)
 }
 
 // NOTE: newDir() calls newFile() for each file
@@ -92,14 +93,65 @@ const newDir = async (position) => {
   }
 }
 
-// TODO: 
-// - move this into newFile()
-// - display info independently of adding a file
-const showFileInfo = (file, position) => {
-  let textBox = document.createElement('p')
-  let fileInfo = document.createTextNode(file.name)
-  textBox.appendChild(fileInfo)
-  document.getElementById(position).appendChild(textBox)
+// render file info & control buttons for each file added
+const renderFileInfo = (file, position) => {
+  // root div in which this gets rendered
+  // depends on which column the file gets uploaded to
+  let parentContainer = document.getElementById(position)
+  
+  // generate div for displaying file info and controls
+  // one is made for each uploaded file
+  let fileInfoDiv = document.createElement('div') // one for each file added to any array
+  let fileInfoDivID = generateFileInfoDivID() // used for de-rendering fileInfoDiv
+  fileInfoDiv.setAttribute('id', fileInfoDivID)
+  parentContainer.appendChild(fileInfoDiv)
+
+  // generate p tag that displays file name inside fileInfoDiv
+  let fileName = document.createElement('p')
+  let name = document.createTextNode(file.name)
+  fileName.appendChild(name)
+  fileInfoDiv.appendChild(fileName)
+
+  // create & render delete button for rendered file info div
+  let deleteButton = document.createElement('button') 
+  deleteButton.setAttribute('onClick', `clearThisFile(${fileInfoDivID})`) 
+  let btnText = document.createTextNode('X')
+  deleteButton.appendChild(btnText)
+  fileInfoDiv.appendChild(deleteButton)
+}
+
+// generates a 3 character string ID for the div rendering the
+// file info. This id will be used to de-render any entries upon removal
+// TODO: find a cleaner way to do this, this mess can't be the only way to do it
+const generateFileInfoDivID = () => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = ''
+  for ( var i = 0; i < 3; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+  return result
+}
+
+// FIXME: can only remove the DOM element right now
+// needs to also remove file from the respective array
+// however passing the file and array to the function 
+// as it is now will return an error
+const clearThisFile = (element) => {
+  element.remove()
+
+  // TODO: do this cleaner. very ugly
+  // if (position === 'sides') {
+  //   const index = sides.indexOf(file)
+  //   if (index > -1) sides.splice(index, 1)
+  // }
+  // if (position === 'middle') {
+  //   const index = middle.indexOf(file)
+  //   if (index > -1) middle.splice(index, 1)
+  // }
+  // if (position === 'middleDrops') {
+  //   const index = middleDrops.indexOf(file)
+  //   if (index > -1) middleDrops.splice(index, 1)
+  // }
 }
 
 const generate = () => { 
