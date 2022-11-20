@@ -113,16 +113,64 @@ const renderFileInfo = (file, position) => {
   fileInfoDiv.appendChild(fileName)
 
   // create & render delete button for rendered file info div
-  let deleteButton = document.createElement('button') 
-  deleteButton.setAttribute('onClick', `clearThisFile(${fileInfoDivID})`) 
+  let deleteButton = document.createElement('button')
+  console.log(name)
+
+  /* VERY BIG TODO */
+  /* for some damn reason I can not pass the filename, file or position/column
+  which the file is in. All I get is Uncaught SyntaxError: Unexpected identifier 'Text'.
+  And if I try to pass the file itself I get the same but with 'File' at the end. 
+  I am trying to pass this parameter because I later need to figure out which of the files
+  is getting delete from the array (for the same reason position/column is needed).
+  So far this does not seem like the way to do it. 
+
+  clearThisFile(infoDiv, file, position) does 3 ifs to check which column the selected-for-deletion file
+  is in. Yes, disgusting way of doing it, idc. For this the position let is also passed.
+  Which, just like file or file.name throws an error. For this variable to be available I'd have to 
+  redo some things I don't have the energy for right now.
+
+  possible solutions --
+
+  - Try upon uploading a file create an object inside sides/middle/middleDrops array with all the data being 
+  created in renderFileInfo(). Then use this array of data to generate the html
+  in a cleaner manner. Possibly this will end me up with the same SyntaxError
+  + JSON files could be useful for this + i plan on including json files eventually
+  anyway for the purpose of giving the user more control over the files.
+
+  - The other and much more clear headed reasonable solution is to rewrite this whole thing
+  inside app.js using https://github.com/remy/min.js and https://github.com/z-pattern-matching/z
+  pray to god I wake up the next day with the main app hosted on a nodejs server. 
+  
+  min.js is a minimalist library that lets you fuck around with the DOM. My ignorant judgement
+  tells me this library will fit seamlessly in this pure js design/coding style this project
+  has so far. And it will massively simplify this exact function. Will likely still need to implement
+  the file object anyway. But the whole program will be cleaner once I do.
+
+  z pattern matching because pattern matching. Pattern matching doesn't need to prove itself to you.
+  You need to prove yourself to pattern matching. 
+
+  - ask on stackoverflow
+
+  - get absolutely dunked on because I missed the simple and obvious solution to this.
+  in this case you probably didn't get this far.
+
+  --
+
+  in the end solution 2 is inevitable when we switch to a nodejs server fully
+
+  Before I get into this I'm gonna need to implement what I already have into the main
+  GoonTok repo so that'll be the first thing
+  */
+  deleteButton.setAttribute('onClick', `clearThisFile(${fileInfoDivID}, ${file}, ${position})`) 
+  // strangely sending fileInfoID gives the DOM element instead of the ID
   let btnText = document.createTextNode('X')
   deleteButton.appendChild(btnText)
   fileInfoDiv.appendChild(deleteButton)
 }
 
-// generates a 3 character string ID for the div rendering the
-// file info. This id will be used to de-render any entries upon removal
-// TODO: find a cleaner way to do this, this mess can't be the only way to do it
+/* generates a 3 character string ID for the div rendering the
+file info. This id will be used to de-render any entries upon removal
+TODO: find a cleaner way to do this, this mess can't be the only way to do it */
 const generateFileInfoDivID = () => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   let result = ''
@@ -132,12 +180,13 @@ const generateFileInfoDivID = () => {
   return result
 }
 
-// FIXME: can only remove the DOM element right now
-// needs to also remove file from the respective array
-// however passing the file and array to the function 
-// as it is now will return an error
-const clearThisFile = (element) => {
-  element.remove()
+/* FIXME: can only remove the DOM element right now
+needs to also remove file from the respective array
+however passing the file and array to the function 
+as it is now will return an error */
+const clearThisFile = (infoDiv,file, position) => {
+  // infoDiv.remove()
+  console.log(position)
 
   // TODO: do this cleaner. very ugly
   // if (position === 'sides') {
